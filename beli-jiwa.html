@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pembelian Asuransi Jiwa - InsuraHub</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>InsuraHub</h1>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+
+</nav>
+
+</header>
+
+
+
+<section class="form-container">
+
+
+<h2>Pembelian Asuransi Jiwa</h2>
+
+
+<form id="jiwaForm">
+
+
+<label>Nama Pemegang Polis</label>
+
+<input type="text" id="namaJiwa">
+
+
+
+<label>Tanggal Lahir</label>
+
+<input type="date" id="tanggalLahir">
+
+
+
+<label>Jenis Kelamin</label>
+
+<select id="kelaminJiwa">
+
+<option value="">Pilih</option>
+<option value="Laki-laki">Laki-laki</option>
+<option value="Perempuan">Perempuan</option>
+
+</select>
+
+
+
+<label>Pekerjaan</label>
+
+<select id="pekerjaanJiwa">
+
+<option value="">Pilih</option>
+<option value="Pegawai">Pegawai</option>
+<option value="Wirausaha">Wirausaha</option>
+<option value="Pekerjaan Risiko Tinggi">Pekerjaan Risiko Tinggi</option>
+
+</select>
+
+
+
+<label>Status Merokok</label>
+
+<select id="merokokJiwa">
+
+<option value="">Pilih</option>
+<option value="Tidak">Tidak</option>
+<option value="Ya">Ya</option>
+
+</select>
+
+
+
+<label>Riwayat Penyakit</label>
+
+<select id="penyakitJiwa">
+
+<option value="">Pilih</option>
+<option value="Tidak Ada">Tidak Ada</option>
+<option value="Ada">Ada</option>
+
+</select>
+
+
+
+<label>Besaran Pertanggungan</label>
+
+<select id="pertanggungan">
+
+<option value="">Pilih</option>
+<option value="1000000000">Rp1.000.000.000</option>
+<option value="2000000000">Rp2.000.000.000</option>
+<option value="3500000000">Rp3.500.000.000</option>
+<option value="5000000000">Rp5.000.000.000</option>
+<option value="10000000000">Rp10.000.000.000</option>
+
+</select>
+
+
+
+<button type="button" onclick="hitungPremiJiwa()">
+
+Hitung Premi
+
+</button>
+
+
+
+<p id="hasilJiwa"></p>
+
+
+
+<br>
+
+
+
+<button type="button" onclick="checkoutJiwa()">
+
+Beli Sekarang
+
+</button>
+
+
+</form>
+
+
+</section>
+
+
+
+
+<script>
+
+
+function hitungUmurJiwa(tanggalLahir){
+
+let lahir = new Date(tanggalLahir);
+let sekarang = new Date();
+
+let umur = sekarang.getFullYear() - lahir.getFullYear();
+
+let belumUlangTahun =
+(sekarang.getMonth() < lahir.getMonth()) ||
+(sekarang.getMonth() == lahir.getMonth() && sekarang.getDate() < lahir.getDate());
+
+if(belumUlangTahun){
+umur--;
+}
+
+return umur;
+
+}
+
+
+
+function hitungPremiJiwa(){
+
+
+let tanggalLahir =
+document.getElementById("tanggalLahir").value;
+
+
+let pertanggungan =
+Number(document.getElementById("pertanggungan").value);
+
+
+
+if(tanggalLahir == "" || pertanggungan == 0 || isNaN(pertanggungan)){
+
+alert("Lengkapi data terlebih dahulu!");
+
+return;
+
+}
+
+
+let umur = hitungUmurJiwa(tanggalLahir);
+
+
+// tarif premi (m) berdasarkan umur
+
+let m;
+
+if(umur <= 30){
+
+m = 0.002; // 0.2%
+
+}
+
+else if(umur <= 50){
+
+m = 0.004; // 0.4%
+
+}
+
+else{
+
+m = 0.01; // 1%
+
+}
+
+
+// premi per bulan = m * besaran pertanggungan (t)
+
+let premi = m * pertanggungan;
+
+
+
+document.getElementById("hasilJiwa").innerHTML =
+
+"Premi Anda: Rp " + premi.toLocaleString("id-ID") + " / bulan";
+
+
+
+localStorage.setItem(
+"produk",
+"Asuransi Jiwa"
+);
+
+
+localStorage.setItem(
+"jenisAsuransi",
+"Jiwa"
+);
+
+
+localStorage.setItem(
+"premi",
+premi
+);
+
+
+
+}
+
+
+
+function checkoutJiwa(){
+
+
+let nama =
+document.getElementById("namaJiwa").value;
+
+
+
+let premi =
+localStorage.getItem("premi");
+
+
+
+if(nama == ""){
+
+alert("Nama pemegang polis harus diisi!");
+
+return;
+
+}
+
+
+
+if(premi == null){
+
+alert("Silakan hitung premi terlebih dahulu!");
+
+return;
+
+}
+
+
+
+window.location.href="checkout.html";
+
+}
+
+
+</script>
+
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Hitung Premi Asuransi Mobil - InsuraHub</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+<h1>InsuraHub</h1>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<section class="buy-form">
+
+<h2>Hitung Premi Asuransi Mobil</h2>
+
+<p>
+Masukkan data kendaraan Anda untuk mendapatkan estimasi premi.
+</p>
+
+
+<label>Nama Pemilik</label>
+<input type="text" id="namaPemilik">
+
+
+<label>Merk Mobil</label>
+<input type="text" id="merkMobil">
+
+
+<label>Jenis Mobil</label>
+<input type="text" id="jenisMobil">
+
+
+<label>Tahun Pembuatan</label>
+<input type="number" id="tahunMobil">
+
+
+<label>Harga Mobil</label>
+<input type="number" id="hargaMobil">
+
+
+<label>Nomor Plat Mobil</label>
+<input type="text" id="platMobil">
+
+
+<label>Nomor Mesin</label>
+<input type="text" id="nomorMesin">
+
+
+<label>Nomor Rangka</label>
+<input type="text" id="nomorRangka">
+
+
+<label>Foto Tampak Depan</label>
+<input type="file">
+
+
+<label>Foto Tampak Belakang</label>
+<input type="file">
+
+
+<label>Foto Tampak Kiri</label>
+<input type="file">
+
+
+<label>Foto Tampak Kanan</label>
+<input type="file">
+
+
+<label>Foto Dashboard</label>
+<input type="file">
+
+
+<label>Foto Mesin</label>
+<input type="file">
+
+
+<button type="button" onclick="hitungPremiMobil()">
+Hitung Premi
+</button>
+
+
+<div id="hasilPremi"></div>
+
+
+<br>
+
+
+<button type="button" onclick="checkoutMobil()">
+Checkout
+</button>
+
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2026 InsuraHub
+</p>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>

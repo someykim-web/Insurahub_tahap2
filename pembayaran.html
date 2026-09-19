@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pembayaran - InsuraHub</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>InsuraHub</h1>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+
+<section class="payment-container">
+
+
+<div class="payment-card">
+
+
+<div class="payment-banner">
+
+<h2>Pembayaran InsuraHub</h2>
+
+<p>
+Selesaikan pembayaran untuk mengaktifkan perlindungan asuransi Anda
+</p>
+
+</div>
+
+
+
+<div class="payment-content">
+
+
+<h2>Detail Pembayaran</h2>
+
+
+<div class="detail-payment">
+
+<p>
+<b>Produk</b>
+<span id="produk"></span>
+</p>
+
+
+<p>
+<b>Premi</b>
+<span id="premi"></span>
+</p>
+
+
+<p>
+<b>Metode Pembayaran</b>
+<span id="metode"></span>
+</p>
+
+
+</div>
+
+
+
+<div id="instruksi">
+
+
+</div>
+
+
+
+<button onclick="selesaiBayar()">
+
+Saya Sudah Bayar
+
+</button>
+
+
+
+<a href="index.html">
+Kembali ke Home
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+<script>
+
+
+let produk =
+localStorage.getItem("produk");
+
+
+let premi =
+localStorage.getItem("premi");
+
+
+let metode =
+localStorage.getItem("metodePembayaran");
+
+
+
+document.getElementById("produk").innerHTML =
+": " + produk;
+
+
+
+document.getElementById("premi").innerHTML =
+": Rp " + Number(premi).toLocaleString("id-ID");
+
+
+
+document.getElementById("metode").innerHTML =
+": " + metode;
+
+
+
+let instruksi = "";
+
+
+
+if(metode=="QRIS"){
+
+instruksi = `
+
+<h3>Scan QRIS untuk melakukan pembayaran</h3>
+
+<img src="/InsuraHub/img/qris.png" class="qris-img">
+
+
+<div class="cara-bayar">
+
+<h3>Cara Pembayaran QRIS:</h3>
+
+<ol>
+
+<li>Buka aplikasi e-wallet atau mobile banking</li>
+
+<li>Pilih menu Scan QR / QRIS</li>
+
+<li>Arahkan kamera ke QR Code</li>
+
+<li>Masukkan nominal pembayaran</li>
+
+<li>Konfirmasi pembayaran</li>
+
+</ol>
+
+</div>
+
+`;
+
+}
+
+
+
+else if(
+metode=="Dana" ||
+metode=="OVO"
+){
+
+
+instruksi = `
+
+<h3>Kode Pembayaran ${metode}</h3>
+
+<div class="kode">
+
+889912345678
+
+</div>
+
+
+<div class="cara-bayar">
+
+<h3>Cara Pembayaran:</h3>
+
+<ol>
+
+<li>Buka aplikasi ${metode}</li>
+
+<li>Pilih menu pembayaran</li>
+
+<li>Masukkan kode pembayaran</li>
+
+<li>Konfirmasi pembayaran</li>
+
+</ol>
+
+</div>
+
+
+`;
+
+}
+
+
+
+else{
+
+
+instruksi = `
+
+<h3>Virtual Account ${metode}</h3>
+
+
+<div class="kode">
+
+998877665544
+
+</div>
+
+
+<div class="cara-bayar">
+
+<h3>Cara Pembayaran:</h3>
+
+
+<ol>
+
+<li>Buka aplikasi mobile banking</li>
+
+<li>Pilih menu Virtual Account</li>
+
+<li>Masukkan nomor pembayaran</li>
+
+<li>Konfirmasi pembayaran</li>
+
+</ol>
+
+
+</div>
+
+`;
+
+}
+
+
+
+document.getElementById("instruksi").innerHTML =
+instruksi;
+
+
+
+
+
+function selesaiBayar(){
+
+
+let jenis = localStorage.getItem("jenisAsuransi") || "-";
+
+let tanggalBeli = new Date().toLocaleDateString("id-ID", {
+day: "2-digit",
+month: "long",
+year: "numeric"
+});
+
+let riwayatBaru = {
+produk: produk,
+jenis: jenis,
+tanggal: tanggalBeli,
+premi: premi,
+metode: metode,
+status: "Lunas"
+};
+
+let riwayat = JSON.parse(localStorage.getItem("riwayatPembelian") || "[]");
+
+riwayat.push(riwayatBaru);
+
+localStorage.setItem("riwayatPembelian", JSON.stringify(riwayat));
+
+localStorage.setItem(
+"status",
+"Lunas"
+);
+
+
+window.location.href="history.html";
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

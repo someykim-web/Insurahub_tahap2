@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Checkout - InsuraHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>InsuraHub</h1>
+
+    <nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</nav>
+</header>
+
+
+<section class="form-container">
+
+    <h2>Checkout Pembelian</h2>
+
+  <p id="produkCheckout"></p>
+
+<p id="premiCheckout"></p>
+
+<h3>Metode Pembayaran</h3>
+
+<div class="payment-method">
+
+<div class="payment-method">
+
+<h3>E-Wallet</h3>
+
+<label>
+<input type="radio" name="payment" value="Dana">
+Dana
+</label>
+
+
+<label>
+<input type="radio" name="payment" value="OVO">
+OVO
+</label>
+
+
+
+<h3>Virtual Account</h3>
+
+<label>
+<input type="radio" name="payment" value="BCA">
+BCA Virtual Account
+</label>
+
+
+<label>
+<input type="radio" name="payment" value="BRI">
+BRI Virtual Account
+</label>
+
+
+<label>
+<input type="radio" name="payment" value="Mandiri">
+Mandiri Virtual Account
+</label>
+
+
+
+<h3>QRIS</h3>
+
+<label>
+<input type="radio" name="payment" value="QRIS">
+QRIS
+</label>
+
+
+</div>
+
+</div>
+
+<br><br>
+
+
+    <button onclick="bayar()">
+        Bayar Sekarang
+    </button>
+
+
+    <br><br>
+
+    <a href="index.html">
+        <button>
+            Kembali ke Home
+        </button>
+    </a>
+
+
+</section>
+
+
+<script>
+
+let produk = localStorage.getItem("produk");
+let premi = localStorage.getItem("premi");
+
+
+document.getElementById("produkCheckout").innerHTML =
+"<b>Produk:</b> " + produk;
+
+
+document.getElementById("premiCheckout").innerHTML =
+"<b>Premi:</b> Rp" + premi;
+
+
+
+ function bayar(){
+
+let metode = document.querySelector(
+'input[name="payment"]:checked'
+);
+
+
+if(!metode){
+
+alert("Silahkan pilih metode pembayaran");
+
+return;
+
+}
+
+
+// simpan data pembelian
+
+localStorage.setItem(
+"produk",
+produk
+);
+
+
+localStorage.setItem(
+"premi",
+premi
+);
+
+
+localStorage.setItem(
+"metodePembayaran",
+metode.value
+);
+
+
+// pindah ke halaman pembayaran
+
+window.location.href="pembayaran.html";
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

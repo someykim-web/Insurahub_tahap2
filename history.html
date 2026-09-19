@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>History Pembelian - InsuraHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+
+<header>
+    <h1>InsuraHub</h1>
+
+    <nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+
+<section class="form-container">
+
+    <h2>History Pembelian</h2>
+
+    <div id="historyList"></div>
+
+    <br>
+
+
+    <a href="index.html">
+        <button>
+            Kembali ke Home
+        </button>
+    </a>
+
+
+</section>
+
+<script>
+
+let riwayat = JSON.parse(localStorage.getItem("riwayatPembelian") || "[]");
+
+let historyList = document.getElementById("historyList");
+
+if(riwayat.length === 0){
+
+historyList.innerHTML = "<p>Belum ada riwayat pembelian.</p>";
+
+}
+
+else{
+
+let html = "";
+
+// tampilkan dari yang paling baru
+for(let i = riwayat.length - 1; i >= 0; i--){
+
+let item = riwayat[i];
+
+html += `
+<div class="history-card">
+<p><b>Produk:</b> ${item.produk}</p>
+<p><b>Jenis:</b> ${item.jenis}</p>
+<p><b>Tanggal Pembelian:</b> ${item.tanggal}</p>
+<p><b>Harga:</b> Rp ${Number(item.premi).toLocaleString("id-ID")}</p>
+<p><b>Metode Pembayaran:</b> ${item.metode || "-"}</p>
+<p><b>Status:</b> ${item.status}</p>
+</div>
+<hr>
+`;
+
+}
+
+historyList.innerHTML = html;
+
+}
+
+</script>
+
+</body>
+
+</html>

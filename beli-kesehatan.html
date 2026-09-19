@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pembelian Asuransi Kesehatan - InsuraHub</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>InsuraHub</h1>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="history.html">History</a>
+
+<div id="user-area">
+
+<a href="login.html">Login</a>
+
+<a href="signup.html">Sign Up</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+
+<section class="form-container">
+
+
+<h2>Pembelian Asuransi Kesehatan</h2>
+
+
+<form id="kesehatanForm">
+
+
+<label>Nama Peserta</label>
+<input type="text" id="namaPeserta">
+
+
+
+<label>Tanggal Lahir</label>
+<input type="date" id="tanggalLahirKesehatan">
+
+
+
+<label>Jenis Kelamin</label>
+
+<select id="jenisKelamin">
+
+<option value="">Pilih</option>
+<option value="Laki-laki">Laki-laki</option>
+<option value="Perempuan">Perempuan</option>
+
+</select>
+
+
+
+
+<label>Pekerjaan</label>
+
+<select id="pekerjaan">
+
+<option value="">Pilih</option>
+<option value="Pelajar">Pelajar</option>
+<option value="Karyawan">Karyawan</option>
+<option value="Wiraswasta">Wiraswasta</option>
+<option value="Pekerjaan Berisiko Tinggi">
+Pekerjaan Berisiko Tinggi
+</option>
+
+</select>
+
+
+
+
+<label>Status Merokok</label>
+
+<select id="merokok">
+
+<option value="">Pilih</option>
+<option value="Tidak">Tidak</option>
+<option value="Ya">Ya</option>
+
+</select>
+
+
+
+
+<label>Riwayat Hipertensi</label>
+
+<select id="hipertensi">
+
+<option value="">Pilih</option>
+<option value="Tidak">Tidak</option>
+<option value="Ya">Ya</option>
+
+</select>
+
+
+
+
+<label>Riwayat Diabetes</label>
+
+<select id="diabetes">
+
+<option value="">Pilih</option>
+<option value="Tidak">Tidak</option>
+<option value="Ya">Ya</option>
+
+</select>
+
+
+
+
+<label>Riwayat Penyakit</label>
+
+<select id="riwayat">
+
+<option value="">Pilih</option>
+<option value="Tidak Ada">Tidak Ada</option>
+<option value="Ada">Ada</option>
+
+</select>
+
+
+
+
+<label>Kelas Perawatan</label>
+
+<select id="kelas">
+
+<option value="">Pilih</option>
+<option value="VIP">VIP</option>
+<option value="Kelas 1">Kelas 1</option>
+<option value="Kelas 2">Kelas 2</option>
+
+</select>
+
+
+
+<br>
+
+
+<button 
+type="button"
+onclick="hitungPremiKesehatan()">
+
+Hitung Premi
+
+</button>
+
+
+
+<p id="hasilKesehatan"></p>
+
+
+
+<br>
+
+
+
+<button 
+type="button"
+onclick="checkoutKesehatan()">
+
+Beli Sekarang
+
+</button>
+
+
+
+</form>
+
+
+</section>
+
+
+
+
+<script src="js/script.js"></script>
+
+
+
+</body>
+
+</html>
